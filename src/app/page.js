@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 
 export default function Home() {
@@ -11,8 +13,7 @@ export default function Home() {
       deskripsi: "khas aroma pandan murni saat mulai matang di penanak. Tekstur jaminan pulen.",
       ukuran: "10kg",
       hargaDisplay: "135.000",
-      hargaAngka: 135000,
-      gambar: "/pandan-wangi.jpg" // sesuaikan path gambar kamu
+      gambar: "/pandan-wangi.jpg"
     },
     {
       id: 2,
@@ -20,8 +21,7 @@ export default function Home() {
       deskripsi: "beras pilihan dengan kualitas terbaik, pulen, bersih, dan cocok untuk kebutuhan keluarga sehari-hari.",
       ukuran: "10kg",
       hargaDisplay: "145.000",
-      hargaAngka: 145000,
-      gambar: "/premium.jpg" // sesuaikan path gambar kamu
+      gambar: "/premium.jpg"
     },
     {
       id: 3,
@@ -29,15 +29,16 @@ export default function Home() {
       deskripsi: "beras ketan berkualitas dengan tekstur lembut dan rasa yang pas untuk berbagai olahan tradisional.",
       ukuran: "10kg",
       hargaDisplay: "155.000",
-      hargaAngka: 155000,
-      gambar: "/ketan-putih.jpg" // sesuaikan path gambar kamu
+      gambar: "/ketan-putih.jpg"
     }
   ];
 
   const pesanViaWA = (namaProduk, harga) => {
-    const pesan = `Halo, saya ingin memesan ${namaProduk} (${harga}) dari Padi Emas Nusantara.`;
-    const url = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
-    window.open(url, '_blank');
+    if (typeof window !== 'undefined') {
+      const pesan = `Halo, saya ingin memesan ${namaProduk} (${harga}) dari Padi Emas Nusantara.`;
+      const url = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
+      window.open(url, '_blank');
+    }
   };
 
   return (
@@ -48,7 +49,6 @@ export default function Home() {
           <div className="text-xl font-bold text-amber-600">Padi Emas Nusantara</div>
           <nav className="flex space-x-6">
             <a href="#produk" className="text-gray-700 hover:text-amber-600 transition">Produk</a>
-            {/* Navigasi Tentang Kami yang aktif/bisa diklik */}
             <a href="#tentang-kami" className="text-gray-700 hover:text-amber-600 transition font-medium">
               Tentang Kami
             </a>
@@ -66,7 +66,6 @@ export default function Home() {
             {produkList.map((item) => (
               <div key={item.id} className="bg-white rounded-2xl shadow-md overflow-hidden border border-gray-100 flex flex-col justify-between">
                 <div>
-                  {/* Foto Produk */}
                   <div className="relative h-48 w-full bg-amber-100">
                     <img 
                       src={item.gambar} 
@@ -75,7 +74,6 @@ export default function Home() {
                     />
                   </div>
 
-                  {/* Informasi Produk (Tanpa Badge "Aromatik / Biji Panjang / Spesial") */}
                   <div className="p-5">
                     <h3 className="text-xl font-bold text-gray-900 mb-2">{item.nama}</h3>
                     <p className="text-gray-600 text-sm mb-4 leading-relaxed">
@@ -84,7 +82,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Harga dan Tombol Beli */}
                 <div className="px-5 pb-5 pt-2 flex items-center justify-between border-t border-gray-50">
                   <div>
                     <span className="text-xs text-gray-400 block">Harga / {item.ukuran}</span>
@@ -102,7 +99,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Bagian Tentang Kami (Bisa dituju saat menu di atas diklik) */}
+        {/* Bagian Tentang Kami */}
         <section id="tentang-kami" className="bg-amber-50 rounded-2xl p-8 mb-12 border border-amber-100">
           <h2 className="text-2xl font-bold text-amber-900 mb-3">Tentang Padi Emas Nusantara</h2>
           <p className="text-amber-800 leading-relaxed max-w-3xl">
@@ -113,9 +110,9 @@ export default function Home() {
 
       </main>
 
-      {/* Footer Sesuai Permintaan */}
+      {/* Footer */}
       <footer className="bg-[#3a1b05] text-amber-100 text-center py-4 text-sm">
-        <p>© 2026 Padi Emas Nusantara. Dibuat sepenuh hati oleh Siti Adawiah 24110310078</p>
+        <p>&copy; 2026 Padi Emas Nusantara. Dibuat sepenuh hati oleh Siti Adawiah 24110310078</p>
       </footer>
     </div>
   );
