@@ -15,9 +15,10 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
+    "autoprefixer": "^10.5.4",
     "eslint": "^9",
     "eslint-config-next": "16.2.10",
     "postcss": "^8.5.20",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4.3.3"
   }
 }
